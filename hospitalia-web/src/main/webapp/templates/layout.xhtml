@@ -1,28 +1,62 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>HospitalIA</title>
-    <h:outputStylesheet library="css" name="style.css" />
+
+    <h:outputStylesheet>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #1f2d3d;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .content {
+            flex: 1;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+    </h:outputStylesheet>
 </h:head>
 
 <h:body>
 
+<div class="container">
+
     <!-- MENU LATERAL -->
     <div class="sidebar">
-        <h2>HospitalIA</h2>
-        <a href="/hospitalia-web/pages/dashboard.xhtml">Dashboard</a>
-        <a href="/hospitalia-web/pages/pacientes.xhtml">Pacientes</a>
-        <a href="/hospitalia-web/pages/medicos.xhtml">Médicos</a>
-        <a href="/hospitalia-web/pages/atendimentos.xhtml">Atendimentos</a>
+        <ui:include src="menu.xhtml" />
     </div>
 
-    <!-- CONTEÚDO -->
+    <!-- ÁREA DE CONTEÚDO -->
     <div class="content">
         <ui:insert name="conteudo" />
     </div>
+
+</div>
 
 </h:body>
 </html>

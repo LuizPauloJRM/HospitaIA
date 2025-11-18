@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="sidebar-title">HospitalIA</div>
+
+	<p:menu style="width:100%;">
+
+		<p:menuitem value="Dashboard" icon="pi pi-chart-line"
+			outcome="/pages/dashboard.xhtml" />
+
+		<p:menuitem value="Pacientes" icon="pi pi-users"
+			outcome="/pages/pacientes.xhtml" />
+
+		<p:menuitem value="Médicos" icon="pi pi-user-md"
+			outcome="/pages/medicos.xhtml" />
+
+		<p:menuitem value="Atendimentos" icon="pi pi-calendar"
+			outcome="/pages/atendimentos.xhtml" />
+
+	</p:menu>
+
+</ui:composition>
