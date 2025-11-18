@@ -105,6 +105,7 @@ public class FuncionarioBean implements Serializable {
 //    }
 
     // Getters e Setters
+  
 
     public Funcionario getFuncionario() {
         return funcionario;

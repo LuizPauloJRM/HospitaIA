@@ -1,19 +1,70 @@
-<ui:composition template="/templates/layout.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+<ui:composition 
+    template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="conteudo">
-        <h1>Pacientes</h1>
 
-        <p>Gerenciamento de pacientes:</p>
+        <h:form id="formPaciente">
 
-        <ul>
-            <li>Cadastro de pacientes</li>
-            <li>Listagem e busca</li>
-            <li>Atualização de informações</li>
-            <li>Histórico clínico (futuro)</li>
-        </ul>
+            <p:panel header="Cadastro de Pacientes">
+
+                <p:messages id="msgs" closable="true" />
+
+                <h:panelGrid columns="2" columnClasses="label,value" cellpadding="5">
+
+                    <h:outputLabel value="Nome:" />
+                    <p:inputText value="#{pacienteBean.paciente.nome}" required="true" />
+
+                    <h:outputLabel value="CPF:" />
+                    <p:inputMask value="#{pacienteBean.paciente.cpf}" mask="999.999.999-99" />
+
+                    <h:outputLabel value="Telefone:" />
+                    <p:inputMask value="#{pacienteBean.paciente.telefone}" mask="(99) 99999-9999" />
+
+                    <h:outputLabel value="Email:" />
+                    <p:inputText value="#{pacienteBean.paciente.email}" />
+
+                    <h:outputLabel value="Endereço:" />
+                    <p:inputTextarea rows="3" value="#{pacienteBean.paciente.endereco}" />
+
+                </h:panelGrid>
+
+                <p:commandButton value="Salvar" action="#{pacienteBean.salvar}" update="@form msgs" />
+
+                <p:separator />
+
+                <p:dataTable value="#{pacienteBean.pacientes}" var="p" paginator="true" rows="10"
+                             selection="#{pacienteBean.paciente}" selectionMode="single"
+                             rowKey="#{p.id}" editable="true">
+
+                    <p:column headerText="Nome">
+                        #{p.nome}
+                    </p:column>
+
+                    <p:column headerText="CPF">
+                        #{p.cpf}
+                    </p:column>
+
+                    <p:column headerText="Telefone">
+                        #{p.telefone}
+                    </p:column>
+
+                    <p:column headerText="Ações" style="width:150px;">
+                        <p:commandButton icon="pi pi-pencil" update="@form" action="#{pacienteBean.editar(p)}" />
+                        <p:commandButton icon="pi pi-trash" update="@form msgs" action="#{pacienteBean.excluir(p)}"
+                                         styleClass="ui-button-danger" />
+                    </p:column>
+
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+
     </ui:define>
 
 </ui:composition>

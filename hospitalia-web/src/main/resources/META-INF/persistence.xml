@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="hospitaliaPU" transaction-type="RESOURCE_LOCAL">
+
+        <!-- ENTIDADES AUTOMÁTICAS (scaneia todo o projeto) -->
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+
+            <!-- DRIVER DO MYSQL -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- URL DO BANCO -->
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/hospitalia?useSSL=false&amp;serverTimezone=UTC"/>
+
+            <!-- USUÁRIO / SENHA DO BANCO -->
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- DIALETO DO HIBERNATE -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+
+            <!-- CRIAR/MODIFICAR TABELAS AUTOMATICAMENTE -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- MOSTRA AS QUERYS NO CONSOLE -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
