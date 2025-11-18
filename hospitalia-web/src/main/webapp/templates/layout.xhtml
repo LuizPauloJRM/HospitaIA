@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>HospitalIA</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+    <!-- MENU LATERAL -->
+    <div class="sidebar">
+        <h2>HospitalIA</h2>
+        <a href="/hospitalia-web/pages/dashboard.xhtml">Dashboard</a>
+        <a href="/hospitalia-web/pages/pacientes.xhtml">Pacientes</a>
+        <a href="/hospitalia-web/pages/medicos.xhtml">Médicos</a>
+        <a href="/hospitalia-web/pages/atendimentos.xhtml">Atendimentos</a>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content">
+        <ui:insert name="conteudo" />
+    </div>
+
+</h:body>
+</html>
