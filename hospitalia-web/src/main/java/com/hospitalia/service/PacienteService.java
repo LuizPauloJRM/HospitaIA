@@ -3,73 +3,40 @@ package com.hospitalia.service;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import com.hospitalia.model.Paciente;
-import com.hospitalia.util.JPAUtil;
 
 @Named
 @RequestScoped
 public class PacienteService {
 
-    @PersistenceContext
+    @Inject
     private EntityManager em;
 
-    @Transactional
     public void salvar(Paciente paciente) {
-    	 try {
-             em.getTransaction().begin();
-
-             if (paciente.getId() == null) {
-                 em.persist(paciente);
-             } else {
-                 em.merge(paciente);
-             }
-
-             em.getTransaction().commit();
-         } finally {
-             em.close();
-         }
+        if (paciente.getId() == null) {
+            em.persist(paciente);
+        } else {
+            em.merge(paciente);
+        }
     }
 
     public Paciente buscarPorId(Long id) {
-        EntityManager em = JPAUtil.getEntityManager();
-
-        try {
-            return em.find(Paciente.class, id);
-        } finally {
-            em.close();
-        }
+        return em.find(Paciente.class, id);
     }
 
     public List<Paciente> listarTodos() {
-        EntityManager em = JPAUtil.getEntityManager();
-
-        try {
-            return em
-                    .createQuery("SELECT p FROM Paciente p ORDER BY p.nome", Paciente.class)
-                    .getResultList();
-        } finally {
-            em.close();
-        }
+        return em.createQuery("SELECT p FROM Paciente p ORDER BY p.nome", Paciente.class)
+                 .getResultList();
     }
 
     public void remover(Long id) {
-        EntityManager em = JPAUtil.getEntityManager();
-
-        try {
-            Paciente paciente = em.find(Paciente.class, id);
-
-            if (paciente != null) {
-                em.getTransaction().begin();
-                em.remove(paciente);
-                em.getTransaction().commit();
-            }
-        } finally {
-            em.close();
+        Paciente p = em.find(Paciente.class, id);
+        if (p != null) {
+            em.remove(p);
         }
     }
 }
