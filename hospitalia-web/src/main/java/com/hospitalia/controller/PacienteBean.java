@@ -29,8 +29,16 @@ public class PacienteBean implements Serializable {
      */
     @PostConstruct
     public void init() {
-        paciente = new Paciente();
+        novo(); // garante sempre um objeto limpo
         carregarPacientes();
+    }
+
+    /**
+     * Edita um paciente selecionado da tabela.
+     */
+    public void editar(Paciente pacienteSelecionado) {
+        // Aqui evita erro de entidade detached
+        this.paciente = pacienteService.buscarPorId(pacienteSelecionado.getId());
     }
 
     /**
@@ -74,23 +82,18 @@ public class PacienteBean implements Serializable {
         }
     }
 
-    /**
-     * Adiciona mensagem de sucesso no JSF.
-     */
+    /** Mensagens */
     private void adicionarMensagem(String msg) {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
     }
 
-    /**
-     * Adiciona mensagem de erro no JSF.
-     */
     private void adicionarMensagemErro(String msg) {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null));
     }
 
-    // Getters e Setters 
+    /** Getters e Setters */
 
     public Paciente getPaciente() {
         return paciente;

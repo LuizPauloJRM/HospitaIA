@@ -17,12 +17,24 @@ public class PacienteService {
     private EntityManager em;
 
     public void salvar(Paciente paciente) {
-        if (paciente.getId() == null) {
-            em.persist(paciente);
-        } else {
-            em.merge(paciente);
+
+        try {
+            em.getTransaction().begin();
+
+            if (paciente.getId() == null) {
+                em.persist(paciente);
+            } else {
+                em.merge(paciente);
+            }
+
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
         }
     }
+
 
     public Paciente buscarPorId(Long id) {
         return em.find(Paciente.class, id);
@@ -34,9 +46,19 @@ public class PacienteService {
     }
 
     public void remover(Long id) {
-        Paciente p = em.find(Paciente.class, id);
-        if (p != null) {
-            em.remove(p);
+        try {
+            em.getTransaction().begin();
+
+            Paciente p = em.find(Paciente.class, id);
+            if (p != null) {
+                em.remove(p);
+            }
+
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
         }
     }
 }
