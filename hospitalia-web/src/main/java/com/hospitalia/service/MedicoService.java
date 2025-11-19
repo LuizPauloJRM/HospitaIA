@@ -1,17 +1,18 @@
 package com.hospitalia.service;
 
-import com.hospitalia.model.Medico;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.List;
+
+import com.hospitalia.model.Medico;
 
 @RequestScoped
 public class MedicoService {
 
-    @Inject
+   @PersistenceContext
     private EntityManager em;
 
     public List<Medico> listarTodos() {
