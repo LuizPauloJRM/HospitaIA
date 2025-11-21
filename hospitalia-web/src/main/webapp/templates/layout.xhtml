@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>HospitalIA</title>
+	<title>HospitalIA</title>
 
-    <h:outputStylesheet>
+	<h:outputStylesheet>
+    	
+    	
         body {
             margin: 0;
             padding: 0;
@@ -17,7 +19,7 @@
         .container {
             display: flex;
             height: 100vh;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .sidebar {
@@ -39,24 +41,27 @@
             padding: 30px;
             background: #f5f5f5;
         }
+      
+		
+        
     </h:outputStylesheet>
 </h:head>
 
 <h:body>
 
-<div class="container">
+	<div class="container">
 
-    <!-- MENU LATERAL -->
-    <div class="sidebar">
-        <ui:include src="menu.xhtml" />
-    </div>
+		<!-- MENU LATERAL -->
+		<div class="sidebar">
+			<ui:include src="menu.xhtml" />
+		</div>
 
-    <!-- ÁREA DE CONTEÚDO -->
-    <div class="content">
-        <ui:insert name="conteudo" />
-    </div>
+		<!-- ÁREA DE CONTEÚDO -->
+		<div class="content">
+			<ui:insert name="conteudo" />
+		</div>
 
-</div>
+	</div>
 
 </h:body>
 </html>

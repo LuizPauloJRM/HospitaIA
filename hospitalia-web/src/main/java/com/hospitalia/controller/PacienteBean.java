@@ -10,6 +10,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -23,6 +24,19 @@ public class PacienteBean implements Serializable {
 
     private Paciente paciente;
     private List<Paciente> pacientes;
+    
+ // Lista fixa de sintomas predefinidos
+    private List<String> sintomasPredefinido = Arrays.asList(
+    "Dor de cabeça",
+    "Febre",
+    "Tosse",
+    "Falta de ar",
+    "Náusea",
+    "Dor abdominal",
+    "Tontura",
+    "Cansaço",
+    "Dor muscular"
+    );
 
     /**
      * Inicializa os dados da tela ao carregar a View.

@@ -12,7 +12,7 @@ import com.hospitalia.model.Paciente;
 @Named
 @RequestScoped
 public class PacienteService {
-
+	//Injeção de dependencias  (DI) objeto recebe suas dependencias em vez de criar 
     @Inject
     private EntityManager em;
 

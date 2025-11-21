@@ -1,134 +1,156 @@
-<ui:composition 
-    template="/templates/layout.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="conteudo">
+	<ui:define name="conteudo" scrollable="true">
 
-        <h:form id="formPaciente">
+		<h:form id="formPaciente">
 
-            <p:panel header="Cadastro de Pacientes" styleClass="card">
+			<p:panel header="Cadastro de Pacientes" styleClass="card">
 
-                <!-- mensagens -->
-                <p:messages id="msgs" autoUpdate="true" closable="true" />
+				<!-- mensagens -->
+				<p:messages id="msgs" autoUpdate="true" closable="true" />
 
-                <!-- Grid -->
-                <h:panelGrid columns="2" columnClasses="label,value" cellpadding="6" style="margin-bottom:20px;">
+				<!-- Grid -->
+				<h:panelGrid columns="2" columnClasses="label,value" cellpadding="6"
+					style="margin-bottom:20px;">
 
-                    <h:outputLabel value="Nome:" for="nome" />
-                    <p:inputText id="nome"
-                                 value="#{pacienteBean.paciente.nome}"
-                                 required="true"
-                                 requiredMessage="Informe o nome." />
+					<h:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{pacienteBean.paciente.nome}"
+						required="true" requiredMessage="Informe o nome." />
 
-                    <h:outputLabel value="CPF:" for="cpf" />
-                    <p:inputMask id="cpf"
-                                 value="#{pacienteBean.paciente.cpf}"
-                                 mask="999.999.999-99"
-                                 required="true"
-                                 requiredMessage="Informe o CPF." />
+					<h:outputLabel value="CPF:" for="cpf" />
+					<p:inputMask id="cpf" value="#{pacienteBean.paciente.cpf}"
+						mask="999.999.999-99" required="true"
+						requiredMessage="Informe o CPF." />
 
-                    <h:outputLabel value="Telefone:" for="tel" />
-                    <p:inputMask id="tel"
-                                 value="#{pacienteBean.paciente.telefone}"
-                                 mask="(99) 99999-9999"
-                                 required="true"
-                                 requiredMessage="Informe o telefone." />
+					<h:outputLabel value="Telefone:" for="tel" />
+					<p:inputMask id="tel" value="#{pacienteBean.paciente.telefone}"
+						mask="(99) 99999-9999" required="true"
+						requiredMessage="Informe o telefone." />
 
-                    <h:outputLabel value="Email:" for="email" />
-                    <p:inputText id="email"
-                                 value="#{pacienteBean.paciente.email}"
-                                 required="true"
-                                 requiredMessage="Informe o email." />
+					<h:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{pacienteBean.paciente.email}"
+						required="true" requiredMessage="Informe o email." />
 
-                    <h:outputLabel value="Endereço:" for="end" />
-                    <p:inputTextarea id="end"
-                                     rows="3"
-                                     value="#{pacienteBean.paciente.endereco}" />
+					<h:outputLabel value="Endereço:" for="end" />
+					<p:inputTextarea id="end" rows="3"
+						value="#{pacienteBean.paciente.endereco}" />
 
-                </h:panelGrid>
+				</h:panelGrid>
 
-                <!-- Botões -->
-                <p:commandButton value="Salvar" 
-                                 action="#{pacienteBean.salvar}"
-                                 icon="pi pi-save"
-                                 update=":formPaciente :formPaciente:tabelaPacientes"
-                                 styleClass="ui-button-success" />
+				<!-- Botões -->
+				<p:commandButton value="Salvar" action="#{pacienteBean.salvar}"
+					icon="pi pi-save"
+					update=":formPaciente :formPaciente:tabelaPacientes"
+					styleClass="ui-button-success" />
 
-                <p:commandButton value="Novo" 
-                                 action="#{pacienteBean.novo}"
-                                 process="@this"
-                                 update=":formPaciente"
-                                 icon="pi pi-plus"
-                                 style="margin-left:10px;" />
+				<p:commandButton value="Novo" action="#{pacienteBean.novo}"
+					process="@this" update=":formPaciente" icon="pi pi-plus"
+					style="margin-left:10px;" />
 
-                <p:separator style="margin: 20px 0" />
+				<p:separator style="margin: 20px 0" />
 
-                <!-- tabela pacientes  -->
-                <p:dataTable id="tabelaPacientes"
-                             value="#{pacienteBean.pacientes}" 
-                             var="p"
-                             paginator="true" rows="10"
-                             rowKey="#{p.id}"
-                             emptyMessage="Nenhum paciente encontrado"
-                             styleClass="table">
+				<!-- tabela pacientes  -->
+				<p:dataTable id="tabelaPacientes" value="#{pacienteBean.pacientes}"
+					var="p" paginator="true" rows="10" rowKey="#{p.id}"
+					emptyMessage="Nenhum paciente encontrado" styleClass="table">
 
-                    <p:column headerText="Nome" sortBy="#{p.nome}">
+					<p:column headerText="Nome" sortBy="#{p.nome}">
                         #{p.nome}
                     </p:column>
 
-                    <p:column headerText="CPF" sortBy="#{p.cpf}">
+					<p:column headerText="CPF" sortBy="#{p.cpf}">
                         #{p.cpf}
                     </p:column>
 
-                    <p:column headerText="Telefone">
+					<p:column headerText="Telefone">
                         #{p.telefone}
                     </p:column>
 
-                    <p:column headerText="Ações" style="width:150px; text-align:center;">
+					<p:column headerText="Ações"
+						style="width:150px; text-align:center;">
 
-                        <!-- Editar -->
-                        <p:commandButton icon="pi pi-pencil"
-                                         action="#{pacienteBean.editar(p)}"
-                                         update=":formPaciente"
-                                         styleClass="ui-button-info rounded-button"
-                                         process="@this" />
+						<!-- Editar -->
+						<p:commandButton icon="pi pi-pencil"
+							action="#{pacienteBean.editar(p)}" update=":formPaciente"
+							styleClass="ui-button-info rounded-button" process="@this" />
 
-                        <!-- Excluir-->
-                        <p:commandButton icon="pi pi-trash"
-                                         styleClass="ui-button-danger rounded-button"
-                                         oncomplete="PF('dlgExcluir').show()"
-                                         process="@this">
+						<!-- Excluir-->
+						<p:commandButton icon="pi pi-trash"
+							styleClass="ui-button-danger rounded-button"
+							oncomplete="PF('dlgExcluir').show()" process="@this">
 
-                            <f:setPropertyActionListener value="#{p}" target="#{pacienteBean.paciente}" />
-                        </p:commandButton>
+							<f:setPropertyActionListener value="#{p}"
+								target="#{pacienteBean.paciente}" />
+						</p:commandButton>
 
-                    </p:column>
-                </p:dataTable>
+					</p:column>
+				</p:dataTable>
 
-            </p:panel>
+			</p:panel>
 
-        </h:form>
+		</h:form>
 
 
-        <!-- Confirmar se quer excluir -->
-        <p:confirmDialog widgetVar="dlgExcluir" header="Confirmar Exclusão" message="Deseja realmente excluir este paciente?"
-                         severity="alert" modal="true">
+		<!-- Confirmar se quer excluir -->
+		<p:confirmDialog widgetVar="dlgExcluir" header="Confirmar Exclusão"
+			message="Deseja realmente excluir este paciente?" severity="alert"
+			modal="true">
 
-            <p:commandButton value="Sim" 
-                             action="#{pacienteBean.remover(pacienteBean.paciente)}"
-                             update=":formPaciente:tabelaPacientes :formPaciente:msgs"
-                             oncomplete="PF('dlgExcluir').hide()"
-                             styleClass="ui-button-danger" />
+			<p:commandButton value="Sim"
+				action="#{pacienteBean.remover(pacienteBean.paciente)}"
+				update=":formPaciente:tabelaPacientes :formPaciente:msgs"
+				oncomplete="PF('dlgExcluir').hide()" styleClass="ui-button-danger" />
 
-            <p:commandButton value="Cancelar"
-                             onclick="PF('dlgExcluir').hide(); return false;"
-                             style="margin-left:10px;" />
-        </p:confirmDialog>
+			<p:commandButton value="Cancelar"
+				onclick="PF('dlgExcluir').hide(); return false;"
+				style="margin-left:10px;" />
+		</p:confirmDialog>
 
-    </ui:define>
+		<p:separator style="margin: 20px 0" />
+
+<!-- 		<p:panel header="Informações Clínicas / Sintomas" toggleable="true" -->
+<!-- 			collapsed="false"> -->
+
+<!-- 			<h:panelGrid columns="2" columnClasses="label,value" cellpadding="6"> -->
+
+<!-- 				<h:outputLabel for="queixa" value="Queixa Principal:" /> -->
+<!-- 				<p:inputTextarea id="queixa" rows="3" -->
+<!-- 					value="#{pacienteBean.paciente.queixaPrincipal}" -->
+<!-- 					placeholder="Ex: Dor abdominal há 2 dias..." /> -->
+
+<!-- 				<h:outputLabel for="sintomas" value="Sintomas Comuns:" /> -->
+<!-- 				<p:selectManyCheckbox id="sintomas" -->
+<!-- 					value="#{pacienteBean.paciente.sintomasSelecionados}" layout="grid" -->
+<!-- 					columns="2"> -->
+<!-- 					<f:selectItems value="#{pacienteBean.listaSintomas}" /> -->
+<!-- 				</p:selectManyCheckbox> -->
+
+<!-- 				<h:outputLabel for="outros" value="Outros Sintomas:" /> -->
+<!-- 				<p:inputTextarea id="outros" rows="3" -->
+<!-- 					value="#{pacienteBean.paciente.sintomasOutros}" -->
+<!-- 					placeholder="Descreva sintomas adicionais..." /> -->
+
+<!-- 				<h:outputLabel for="meds" value="Medicamentos em uso:" /> -->
+<!-- 				<p:inputTextarea id="meds" rows="2" -->
+<!-- 					value="#{pacienteBean.paciente.medicamentos}" -->
+<!-- 					placeholder="Ex: Dipirona 500mg 8/8h" /> -->
+
+<!-- 				<h:outputLabel for="alergias" value="Alergias:" /> -->
+<!-- 				<p:inputText id="alergias" value="#{pacienteBean.paciente.alergias}" /> -->
+
+<!-- 				<h:outputLabel for="hist" value="Histórico Médico:" /> -->
+<!-- 				<p:inputTextarea id="hist" rows="3" -->
+<!-- 					value="#{pacienteBean.paciente.historicoMedico}" /> -->
+
+<!-- 			</h:panelGrid> -->
+
+<!-- 		</p:panel> -->
+
+	</ui:define>
 
 </ui:composition>
